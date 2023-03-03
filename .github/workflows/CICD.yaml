@@ -41,5 +41,5 @@ jobs:
             docker image pull manojdsingh/mywebapp
             docker container stop mywebapp-prod
             docker container prune -f
-            docker run -d --name mywebapp-prod --restart unless-stopped -p 80:80 -p 443:443 manojdsingh/mywebapp
+            docker run -d --name mywebapp-prod --restart unless-stopped -p 9020:80 -p 443:443 manojdsingh/mywebapp
             docker image prune -f
