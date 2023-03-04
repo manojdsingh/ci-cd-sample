@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI/CD-MANOJ
 
 on: workflow_dispatch
 
