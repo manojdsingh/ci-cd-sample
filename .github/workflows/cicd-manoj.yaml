@@ -27,7 +27,7 @@ jobs:
           tags: manojdsingh/mywebapp:latest  # Please change the username here
 
       - name: Replacing container
-        uses: manojdsingh/ssh-action@master
+        uses: manojdsingh/ssh-action@main
         with:
           host: ${{ secrets.SERVER_HOSTNAME }}
           username: ${{ secrets.SERVER_USERNAME }}
