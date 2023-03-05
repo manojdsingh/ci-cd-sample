@@ -32,7 +32,7 @@ jobs:
     needs: build
     steps:
       - name: Replacing container
-        uses: manojdsingh/ssh-action@main
+        uses: manojdsingh/ssh-action1@master
         with:
           host: ${{ secrets.SERVER_HOSTNAME }}
           username: ${{ secrets.SERVER_USERNAME }}
