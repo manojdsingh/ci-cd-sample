@@ -44,4 +44,4 @@ jobs:
           SSH_HOST: ${{ secrets.SERVER_HOSTNAME }}    
           
       - name: run command
-        run: docker image ls      
+        run: whoami  
