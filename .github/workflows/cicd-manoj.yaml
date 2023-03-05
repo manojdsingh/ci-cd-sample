@@ -30,6 +30,15 @@ jobs:
         id: Docker_Login
         run: |
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Docker Container Run
+        id: Docker_Container_Run
+        run: |
+          docker image pull manojdsingh/mywebapp
+            docker container stop mywebapp-prod
+            docker container prune -f
+            docker run -d --name mywebapp-prod --restart unless-stopped -p 9020:80 -p 9021:443 manojdsingh/mywebapp
+            docker image prune -f         
         
        
       
