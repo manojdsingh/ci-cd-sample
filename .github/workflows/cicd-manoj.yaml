@@ -26,19 +26,19 @@ jobs:
           push: true
           tags: manojdsingh/mywebapp:latest  # Please change the username here
 
-      - name: Docker Login
-        id: Docker_Login
+      - name: Configure SSH
         run: |
-          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
-          
-      - name: Docker Container Run
-        id: Docker_Container_Run
-        run: |
-          docker image pull manojdsingh/mywebapp
-          docker container stop mywebapp-prod
-          docker container prune -f
-          docker run -d --name mywebapp-prod --restart unless-stopped -p 9020:80 -p 9021:443 manojdsingh/mywebapp
-          docker image prune -f         
-        
-       
-      
+          mkdir -p ~/.ssh/
+          echo "$SERVER_SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SERVER_HOSTNAME
+            User $SERVER_USERNAME
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.SERVER_USERNAME }}
+          SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SSH_HOST: ${{ secrets.SERVER_HOSTNAME }}      
