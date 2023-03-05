@@ -37,7 +37,7 @@ jobs:
           host: ${{ secrets.SERVER_HOSTNAME }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          script: |
+          scripts: |
             docker image pull manojdsingh/mywebapp
             docker container stop mywebapp-prod
             docker container prune -f
